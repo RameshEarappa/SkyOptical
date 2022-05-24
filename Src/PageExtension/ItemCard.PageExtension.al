@@ -2,7 +2,7 @@ pageextension 50102 "item Card Ext" extends "Item Card"
 {
     layout
     {
-        addafter("Posting Details")
+        addafter("Purchasing Code")
         {
             field("SKU Id"; Rec."SKU Id")
             {
@@ -24,10 +24,17 @@ pageextension 50102 "item Card Ext" extends "Item Card"
                 ToolTip = 'Specifies the value of the Tax Class field.';
                 ApplicationArea = All;
             }
-            field("Parent SKU"; Rec."Parent SKU")
+            field("Parent SKU No."; Rec."Parent SKU No.")
             {
                 ToolTip = 'Specifies the value of the Parent SKU field.';
                 ApplicationArea = All;
+                Editable = SetEditable;
+            }
+            field("Parent Item Name"; Rec."Parent SKU Name")
+            {
+                ToolTip = 'Specifies the value of the Parent SKU Name.';
+                ApplicationArea = All;
+                Editable = SetEditable;
             }
             field("Attribute Set"; Rec."Attribute Set")
             {
@@ -80,5 +87,41 @@ pageextension 50102 "item Card Ext" extends "Item Card"
                 ApplicationArea = All;
             }
         }
+        addafter(Blocked)
+        {
+            field("Parent Item"; Rec."Parent Item")
+            {
+                ApplicationArea = All;
+                Editable = SetEditable;
+                trigger OnValidate()
+                var
+                    myInt: Integer;
+                begin
+                    if Rec."Parent Item" then
+                        SetEditable := false
+                    else
+                        SetEditable := true;
+                    CurrPage.Update(true);
+                end;
+            }
+        }
     }
+    trigger OnAfterGetRecord()
+    begin
+        if Rec."Parent Item" then
+            SetEditable := false
+        else
+            SetEditable := true;
+    end;
+
+    trigger OnOpenPage()
+    begin
+        if Rec."Parent Item" then
+            SetEditable := false
+        else
+            SetEditable := true;
+    end;
+
+    var
+        SetEditable: Boolean;
 }

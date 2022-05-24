@@ -47,9 +47,13 @@ page 50102 "Items List_IT"
                 {
                     Caption = 'tax_class_id';
                 }
-                field("Parent SKU"; Rec."Parent SKU")
+                field("Parent SKU No."; Rec."Parent SKU No.")
                 {
                     Caption = 'parent_sku';
+                }
+                field("Parent SKU Name"; Rec."Parent SKU Name")
+                {
+                    Caption = 'parent_sku_name';
                 }
                 field("Attribute Set"; Rec."Attribute Set")
                 {

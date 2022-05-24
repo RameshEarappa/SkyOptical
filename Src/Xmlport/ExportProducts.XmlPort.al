@@ -33,7 +33,7 @@ xmlport 50100 "Export Products"
             fieldelement(tax_class_id; Item."Tax Class")
             {
             }
-            fieldelement(parent_sku; Item."Parent SKU")
+            fieldelement(parent_sku; Item."Parent SKU No.")
             {
             }
             fieldelement(Attribute_Set; Item."Attribute Set")

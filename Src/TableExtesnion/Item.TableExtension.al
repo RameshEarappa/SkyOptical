@@ -21,9 +21,17 @@ tableextension 50101 "Item Ext" extends Item
             DataClassification = ToBeClassified;
             OptionMembers = "None","Taxable Goods","Taxable Goods-Plano Cosmetic",Shipping;
         }
-        field(50004; "Parent SKU"; Text[80])
+        field(50004; "Parent SKU No."; Text[80])
         {
             DataClassification = ToBeClassified;
+            TableRelation = Item."No." where("Parent Item" = const(true));
+            trigger OnValidate()
+            var
+                ItemL: Record Item;
+            begin
+                if ItemL.Get(Rec."Parent SKU No.") then
+                    "Parent SKU Name" := ItemL.Description;
+            end;
         }
         field(50005; "Attribute Set"; Option)
         {
@@ -80,6 +88,25 @@ tableextension 50101 "Item Ext" extends Item
         {
             DataClassification = ToBeClassified;
             TableRelation = Location;
+        }
+        field(50016; "Parent Item"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Parent Item';
+            trigger OnValidate()
+            var
+                myInt: Integer;
+            begin
+                if Rec."Parent Item" then
+                    Rec.Blocked := true
+                else
+                    Rec.Blocked := false;
+            end;
+        }
+        field(50017; "Parent SKU Name"; Text[100])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Parent SKU Name';
         }
     }
 }
