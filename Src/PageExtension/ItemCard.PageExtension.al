@@ -29,20 +29,6 @@ pageextension 50102 "item Card Ext" extends "Item Card"
                 ToolTip = 'Specifies the value of the Parent SKU field.';
                 ApplicationArea = All;
                 Editable = SetEditable;
-                // trigger OnLookup(var Text: Text): Boolean
-                // var
-                //     ItemL: Record Item;
-                // begin
-                //     ItemL.SetRange("Parent Item", true);
-                //     ItemL."No." := Rec."No.";
-                //     if Page.RunModal(0, ItemL) = Action::LookupOK then begin
-                //         Text := ItemL."SKU Id";
-                //         Rec."Parent SKU No." := Text;
-                //         Rec."Parent SKU Name" := ItemL.Description;
-                //         CurrPage.Update(true);
-                //         exit(true);
-                //     end;
-                // end;
             }
             field("Parent Item Name"; Rec."Parent SKU Name")
             {

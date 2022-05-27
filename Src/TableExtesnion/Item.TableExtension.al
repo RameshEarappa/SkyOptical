@@ -5,6 +5,18 @@ tableextension 50101 "Item Ext" extends Item
         field(50000; "SKU Id"; Text[100])
         {
             DataClassification = ToBeClassified;
+            trigger OnValidate()
+            var
+                ItemL: Record Item;
+            begin
+                Clear(ItemL);
+                if Rec."SKU Id" <> '' then begin
+                    ItemL.SetRange("SKU Id", Rec."SKU Id");
+                    ItemL.SetFilter("No.", '<>%1', Rec."No.");
+                    if ItemL.FindFirst() then
+                        Error('SKU ID already exists. Item No. %1', ItemL."No.");
+                end;
+            end;
         }
         field(50001; "Website ID"; Option)
         {
@@ -25,15 +37,17 @@ tableextension 50101 "Item Ext" extends Item
         {
             DataClassification = ToBeClassified;
             ValidateTableRelation = false;
-            //TestTableRelation = false;
             TableRelation = Item."SKU Id" where("Parent Item" = const(true));
             trigger OnValidate()
             var
                 ItemL: Record Item;
             begin
-                ItemL.SetRange("SKU Id", Rec."Parent SKU No.");
-                if ItemL.FindFirst() then
+                if Rec."Parent SKU No." <> '' then begin
+                    ItemL.SetRange("SKU Id", Rec."Parent SKU No.");
+                    ItemL.FindFirst();
                     "Parent SKU Name" := ItemL.Description;
+                end else
+                    "Parent SKU Name" := '';
             end;
         }
         field(50005; "Attribute Set"; Option)
@@ -142,6 +156,12 @@ tableextension 50101 "Item Ext" extends Item
             Caption = 'Collection';
         }
     }
+    // keys
+    // {
+    //     key(Custom; "SKU Id")
+    //     {
+    //     }
+    // }
     fieldgroups
     {
         addlast(DropDown; "SKU Id")
