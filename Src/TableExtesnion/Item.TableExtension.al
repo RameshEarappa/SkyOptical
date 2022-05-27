@@ -24,12 +24,15 @@ tableextension 50101 "Item Ext" extends Item
         field(50004; "Parent SKU No."; Text[80])
         {
             DataClassification = ToBeClassified;
-            TableRelation = Item."No." where("Parent Item" = const(true));
+            ValidateTableRelation = false;
+            //TestTableRelation = false;
+            TableRelation = Item."SKU Id" where("Parent Item" = const(true));
             trigger OnValidate()
             var
                 ItemL: Record Item;
             begin
-                if ItemL.Get(Rec."Parent SKU No.") then
+                ItemL.SetRange("SKU Id", Rec."Parent SKU No.");
+                if ItemL.FindFirst() then
                     "Parent SKU Name" := ItemL.Description;
             end;
         }
@@ -107,6 +110,42 @@ tableextension 50101 "Item Ext" extends Item
         {
             DataClassification = ToBeClassified;
             Caption = 'Parent SKU Name';
+        }
+        field(50018; "HS Code_Intwo"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'HS Code';
+        }
+        field(50019; "Diameter_Intwo"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Diameter';
+        }
+        field(50020; "Color_Intwo"; Text[20])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Color';
+        }
+        field(50021; "Group_Intwo"; Text[20])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Group';
+        }
+        field(50022; "Sub Group_Intwo"; Text[20])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Sub Group';
+        }
+        field(50023; "Collection_Intwo"; Text[20])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Collection';
+        }
+    }
+    fieldgroups
+    {
+        addlast(DropDown; "SKU Id")
+        {
         }
     }
 }

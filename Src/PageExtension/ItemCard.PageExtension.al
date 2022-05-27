@@ -29,6 +29,20 @@ pageextension 50102 "item Card Ext" extends "Item Card"
                 ToolTip = 'Specifies the value of the Parent SKU field.';
                 ApplicationArea = All;
                 Editable = SetEditable;
+                // trigger OnLookup(var Text: Text): Boolean
+                // var
+                //     ItemL: Record Item;
+                // begin
+                //     ItemL.SetRange("Parent Item", true);
+                //     ItemL."No." := Rec."No.";
+                //     if Page.RunModal(0, ItemL) = Action::LookupOK then begin
+                //         Text := ItemL."SKU Id";
+                //         Rec."Parent SKU No." := Text;
+                //         Rec."Parent SKU Name" := ItemL.Description;
+                //         CurrPage.Update(true);
+                //         exit(true);
+                //     end;
+                // end;
             }
             field("Parent Item Name"; Rec."Parent SKU Name")
             {
@@ -84,6 +98,36 @@ pageextension 50102 "item Card Ext" extends "Item Card"
             field(Usage; Rec.Usage)
             {
                 ToolTip = 'Specifies the value of the Usage field.';
+                ApplicationArea = All;
+            }
+            field("HS Code_Intwo"; Rec."HS Code_Intwo")
+            {
+                ToolTip = 'Specifies the value of the HS Code field.';
+                ApplicationArea = All;
+            }
+            field(Diameter_Intwo; Rec.Diameter_Intwo)
+            {
+                ToolTip = 'Specifies the value of the Diameter field.';
+                ApplicationArea = All;
+            }
+            field(Color_Intwo; Rec.Color_Intwo)
+            {
+                ToolTip = 'Specifies the value of the Color field.';
+                ApplicationArea = All;
+            }
+            field(Group_Intwo; Rec.Group_Intwo)
+            {
+                ToolTip = 'Specifies the value of the Group field.';
+                ApplicationArea = All;
+            }
+            field("Sub Group_Intwo"; Rec."Sub Group_Intwo")
+            {
+                ToolTip = 'Specifies the value of the Sub Group field.';
+                ApplicationArea = All;
+            }
+            field(Collection_Intwo; Rec.Collection_Intwo)
+            {
+                ToolTip = 'Specifies the value of the Collection field.';
                 ApplicationArea = All;
             }
         }

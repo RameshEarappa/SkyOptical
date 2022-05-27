@@ -99,6 +99,30 @@ page 50102 "Items List_IT"
                 {
                     Caption = 'usage';
                 }
+                field("HS Code_Intwo"; Rec."HS Code_Intwo")
+                {
+                    ToolTip = 'Specifies the value of the HS Code field.';
+                }
+                field(Diameter_Intwo; Rec.Diameter_Intwo)
+                {
+                    ToolTip = 'Specifies the value of the Diameter field.';
+                }
+                field(Color_Intwo; Rec.Color_Intwo)
+                {
+                    ToolTip = 'Specifies the value of the Color field.';
+                }
+                field(Group_Intwo; Rec.Group_Intwo)
+                {
+                    ToolTip = 'Specifies the value of the Group field.';
+                }
+                field("Sub Group_Intwo"; Rec."Sub Group_Intwo")
+                {
+                    ToolTip = 'Specifies the value of the Sub Group field.';
+                }
+                field(Collection_Intwo; Rec.Collection_Intwo)
+                {
+                    ToolTip = 'Specifies the value of the Collection field.';
+                }
                 field("Last Date Modified"; Rec."Last Date Modified")
                 {
                 }
